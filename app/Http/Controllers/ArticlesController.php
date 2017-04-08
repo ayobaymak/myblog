@@ -9,15 +9,18 @@ use App\Article;
 
 class ArticlesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index(){
        $articles=Article::latest()->get();
        return view('articles.index', compact('articles'));
     }
 
-    public function show($id){
-        dd('show');
-        $article = Article::findorfail($id);
-
+    public function show(Article $article){
 
         return view('articles.show',compact('article'));
     }
@@ -26,9 +29,18 @@ class ArticlesController extends Controller
         return view('articles.create');
     }
 
-    public function store(CreateArticleRequest $request){
+    public function store(Article $article){
 
-        Article::create($request->all());
+        $this->validate(request(),
+            [
+                'title' => 'required|min:3',
+                'body' =>'required']);
+
+        Article::create([
+            'title' => request('title'),
+            'body' => request('body'),
+            'user_id' => auth()->id()
+        ]);
 
         return redirect('articles');
     }

@@ -1,17 +1,13 @@
-@extends('app')
+@extends('layouts.master')
+@extends('partials.blogpost')
+{{--@section('content')--}}
+    {{--@foreach($articles as $article)--}}
+        {{--<div class="blog-post">--}}
+            {{--<h2 class="blog-post-title">{{ $article->title }}</h2>--}}
+            {{--<p class="blog-post-meta">January 1 2014 by <a href="#">Mark</a></p>--}}
 
-@section('content')
-    <h1>Articles</h1>
+            {{--{{ $article->body }}--}}
 
-    <hr/>
-
-    @foreach($articles as $article)
-        <article>
-            <h2>
-                <a href="{{url('/articles', $article->id)}}"> {{$article->title}}</a>
-            </h2>
-
-            <div class="body">{{$article->body}}</div>
-        </article>
-    @endforeach
-@stop
+        {{--</div><!-- /.blog-post -->--}}
+    {{--@endforeach--}}
+{{--@endsection--}}

@@ -4,15 +4,16 @@ namespace App;
 
 
 
-class Article extends Model
+class Comment extends Model
 {
-    public function comments(){
+    public function article(){
 
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Article::class);
     }
 
     public function user(){
 
         return $this->belongsTo(User::class);
     }
+
 }

@@ -1,7 +1,7 @@
-@extends('app')
+@extends('layouts.master')
 
 @section('content')
-    <h1>Write a new Article</h1>
+    <h1>Publish a new Article</h1>
 
     <hr/>
 
@@ -23,20 +23,15 @@
 
     <div class="form-group">
 
-        {!! Form::submit('Add Article', ['class' => 'btn btn-primary form-control'])!!}
+        {!! Form::submit('Publish Article', ['class' => 'btn btn-primary form-control'])!!}
 
     </div>
 
     {!! Form::close() !!}
 
-    @if($errors->any())
-        <ul class="alert alert-danger">
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
 
+
+   @include('partials.errors')
 
 
 @stop

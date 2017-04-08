@@ -23,9 +23,6 @@ class CreateArticleRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title' => 'required|min:3',
-            'body' => 'required'
-        ];
+        //
     }
 }

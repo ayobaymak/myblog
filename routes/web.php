@@ -1,5 +1,5 @@
 <?php
-
+use App\Article;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,16 +11,19 @@
 |
 */
 Route::get('/',function(){
-    return view('welcome');
+    $articles=Article::latest()->get();
+    return view('articles.index', compact('articles'));
 });
 
-Route::get('about', 'PagesController@about');
-
-Route::get('contact', 'PagesController@contact');
-
 Route::resource('articles', 'ArticlesController');
+
+Route::post('/articles/{article}/comments','CommentsController@store');
 
 //Route::get('articles', 'ArticlesController@index');
 //Route::get('articles/create', 'ArticlesController@create');
 //Route::get('articles/{id}', 'ArticlesController@show');
 //Route::post('articles', 'ArticlesController@store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
